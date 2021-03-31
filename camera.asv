@@ -1,0 +1,21 @@
+close all, clear, clc;
+
+f = 0.1; % focal lenght
+O = [0; 0; 0]; % origin
+C = [2; 2; 1]; % camera origin
+
+versor_origin = 0.5;
+versor_camera = 0.2;
+
+origin_axis = {'O';'X';'Y';'Z'};
+%camera_axis = {'xc'}
+
+grid on;
+quiver3([O(1);O(1);O(1)],[O(2);O(2);O(2)],[O(3);O(3);O(3)],[versor_origin;0;0],[0;versor_origin;0],[0;0;versor_origin]) % origin frame
+text([O(1),O(1)+1,O(1),O(1)], [O(2),O(2),O(2)+1,O(2)], [O(3),O(3),O(3),O(3)+1], origin_axis)
+
+
+hold on;
+quiver3([C(1);C(1);C(1)],[C(2);C(2);C(2)],[C(3);C(3);C(3)],[versor_camera;0;0],[0;versor_camera;0],[0;0;versor_cam]) % origin frame
+
+hold off;

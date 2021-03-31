@@ -1,6 +1,6 @@
 close all, clear, clc;
 
-f = 0.1; % focal lenght
+
 O = [0; 0; 0]; % origin
 C = [2; 1; 0]; % camera origin
 
@@ -18,5 +18,32 @@ axis equal
 hold on;
 quiver3([C(1);C(1);C(1)],[C(2);C(2);C(2)],[C(3);C(3);C(3)],[versor_camera;0;0],[0;versor_camera;0],[0;0;versor_camera]) % camera frame
 text([C(1),C(1)+versor_camera,C(1),C(1)], [C(2),C(2),C(2)+versor_camera,C(2)], [C(3),C(3),C(3),C(3)+versor_camera], camera_axis)
-
 hold off;
+
+
+d = C - O;
+
+Rx = [1 0 0;
+    0 cos(pi/2) -sin(pi/2);
+    0 sin(pi/2) cos(pi/2)];
+
+Ry = [cos(pi/2) 0 sin(pi/2);
+    0 1 0;
+    -sin(pi/2) 0 cos(pi/2)];
+
+R = Rx*Ry;
+
+
+Tco = [R d;
+    zeros(1,3) 1];
+
+
+%% P matrix
+
+f = 0.015; % focal lenght
+P = [diag([f,f,1]), zeros(3,1)];
+
+p = [0.3; 0.4; 3.0];
+
+
+

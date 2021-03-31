@@ -1,8 +1,7 @@
 close all, clear, clc;
 
-
 O = [0; 0; 0]; % origin
-C = [2; 1; 0]; % camera origin
+C = [0.5; 0.5; 1.5]; % camera origin
 
 versor_origin = 0.5;
 versor_camera = 0.2;
@@ -18,7 +17,7 @@ axis equal
 hold on;
 quiver3([C(1);C(1);C(1)],[C(2);C(2);C(2)],[C(3);C(3);C(3)],[versor_camera;0;0],[0;versor_camera;0],[0;0;versor_camera]) % camera frame
 text([C(1),C(1)+versor_camera,C(1),C(1)], [C(2),C(2),C(2)+versor_camera,C(2)], [C(3),C(3),C(3),C(3)+versor_camera], camera_axis)
-hold off;
+
 
 
 d = C - O;
@@ -41,9 +40,11 @@ Tco = [R d;
 %% P matrix
 
 f = 0.015; % focal lenght
-P = [diag([f,f,1]), zeros(3,1)];
+P = diag([f,f,1]) * [eye(3), zeros(3,1)];
 
-p = [0.3; 0.4; 3.0];
-
-
-
+p = [4.6; 0.25; 1.8];
+scatter3(p(1),p(2),p(3));
+scatter3(linspace(C(1),p(1)), linspace(C(2),p(2)), linspace(C(3),p(3)),' . ')
+xlim([-0.5, 5])
+ylim([-0.5, 2])
+zlim([0, 2.5])

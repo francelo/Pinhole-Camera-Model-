@@ -1,27 +1,27 @@
 close all, clear, clc;
 
 %% parameters
-% frame
-O = [0; 0; 0]; % world origin
-C = [0.2; 0.3; 0.6]; % camera origin
+% frames
+O = [0; 0; 0];        % world origin frame
+C = [0.2; 0.3; 0.6];  % camera origin frame
 versor_origin = 0.4;
 versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 camera_axis = {'oc','zc','xc','yc'};
-plane_y = 0.25; % y image plane width
-plane_z = 0.18; % z image plane height
+plane_y = 0.25;       % y image plane width
+plane_z = 0.18;       % z image plane height
 
-f = 0.05; % focal lenght
-p = [1.0; 0.15; 0.8]; % point (x,y,z)
-d = C - O;  
-ang = [pi/2 pi/2 0];
+f = 0.05;             % focal lenght
+p = [1.0; 0.15; 0.8]; % point's position (x,y,z) in world frame
+d = C - O;            % distance between camera and world frame
+ang = [pi/2 pi/2 0];  
 
-[x_proj y_proj] = proj(p, ang, d, f)
+[x_proj y_proj] = proj(p, ang, d, f) % computes the projection of the point in the image plane
 
 %% plot
 
-grid on;
-quiver3([O(1);O(1);O(1)],[O(2);O(2);O(2)],[O(3);O(3);O(3)],[versor_origin;0;0],[0;versor_origin;0],[0;0;versor_origin]) % origin frame
+grid on; 
+quiver3([O(1);O(1);O(1)],[O(2);O(2);O(2)],[O(3);O(3);O(3)],[versor_origin;0;0],[0;versor_origin;0],[0;0;versor_origin]) % world frame
 text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
 
 axis equal
@@ -29,13 +29,13 @@ hold on;
 quiver3([C(1);C(1);C(1)],[C(2);C(2);C(2)],[C(3);C(3);C(3)],[versor_camera;0;0],[0;versor_camera;0],[0;0;versor_camera]) % camera frame
 text([C(1),C(1)+versor_camera,C(1),C(1)], [C(2),C(2),C(2)+versor_camera,C(2)], [C(3),C(3),C(3),C(3)+versor_camera], camera_axis)
 
-scatter3(p(1),p(2),p(3));
+scatter3(p(1),p(2),p(3)); 
 scatter3(linspace(C(1),p(1)), linspace(C(2),p(2)), linspace(C(3),p(3)),' . ')
 
 
-x=linspace(C(1)+f,C(1)+f,20);
-y=linspace(C(2)-plane_y,C(2)+plane_y,20);
-z=linspace(C(3)-plane_z,C(3)+plane_z,20);
+x = linspace(C(1)+f,C(1)+f,20);
+y = linspace(C(2)-plane_y,C(2)+plane_y,20);
+z = linspace(C(3)-plane_z,C(3)+plane_z,20);
 
 [X, Y] = meshgrid(x,y);
 Z = meshgrid(z);

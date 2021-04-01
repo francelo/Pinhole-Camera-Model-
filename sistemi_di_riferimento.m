@@ -2,6 +2,8 @@ clc, clear all;
 %% creazione sistemi di riferimento
 O = [0;0;0] 
 C = [2;1;2]
+
+figure()
 quiver3(O,O,O,[1;0;0],[0;1;0],[0;0;1])
 hold on
 quiver3([C(1);C(1);C(1)],[C(2);C(2);C(2)],[C(3);C(3);C(3)],[0;1;0],[0;0;1],[1;0;0])

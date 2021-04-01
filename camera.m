@@ -2,44 +2,21 @@ close all, clear, clc;
 
 %% parameters
 % frame
-O = [0; 0; 0]; % origin
+O = [0; 0; 0]; % world origin
 C = [0.2; 0.3; 0.6]; % camera origin
 versor_origin = 0.4;
 versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 camera_axis = {'oc','zc','xc','yc'};
+plane_y = 0.25; % y image plane width
+plane_z = 0.18; % z image plane height
 
-% point (x,y,z)
-p = [1.0; 0.15; 0.8];
+f = 0.05; % focal lenght
+p = [1.0; 0.15; 0.8]; % point (x,y,z)
+d = C - O;  
+ang = [pi/2 pi/2 0];
 
-% focal lenght
-f = 0.05;
-
-% 
-d = C - O;
-
-Rx = [1 0 0;
-    0 cos(pi/2) -sin(pi/2);
-    0 sin(pi/2) cos(pi/2)];
-
-Ry = [cos(pi/2) 0 sin(pi/2);
-    0 1 0;
-    -sin(pi/2) 0 cos(pi/2)];
-
-R = Rx*Ry;
-
-
-Twc = [R d;
-    zeros(1,3) 1];
-
-p_cam = Twc^-1 * [p;1]
-
-% camera projection matrix
-P = diag([f,f,1]) * [eye(3), zeros(3,1)];
-
-p_tilde = P*[p;1];
-x_proj = p_tilde(1)/p(3)
-y_proj = p_tilde(2)/p(3)
+[x_proj y_proj] = proj(p, ang, d, f)
 
 %% plot
 
@@ -57,14 +34,32 @@ scatter3(linspace(C(1),p(1)), linspace(C(2),p(2)), linspace(C(3),p(3)),' . ')
 
 
 x=linspace(C(1)+f,C(1)+f,20);
-y=linspace(C(2)-0.25,C(2)+0.25,20);
-z=linspace(C(3)-0.18,C(3)+0.18,20);
+y=linspace(C(2)-plane_y,C(2)+plane_y,20);
+z=linspace(C(3)-plane_z,C(3)+plane_z,20);
 
 [X, Y] = meshgrid(x,y);
 Z = meshgrid(z);
 s = surf(X,Y,Z,'FaceAlpha',0.3);
 s.EdgeColor = 'none';
 
-% xlim([-2.5, 5])
-% ylim([-2.5, 3])
-% zlim([0, 3.5])
+%%
+[x_proj y_proj] = proj(p, ang, d, f)
+
+w = 0.1   % width of the object
+h = 0.2   % height of the object
+x_surf = linspace(p(1)-w, p(1)+w, 3)
+y_surf = linspace(p(2)-w, p(2)+w, 3)
+z_surf = linspace(p(3)-h, p(3)+h, 3)
+[X_surf, Y_surf] = meshgrid(x_surf,y_surf);
+Z_surf = meshgrid(z_surf);
+
+s = surf(X_surf,Y_surf,Z_surf,'Facealpha',0.3);
+
+points = [x_surf             x_surf                         x_surf;
+          y_surf [y_surf(2) y_surf(3) y_surf(1)] [y_surf(3) y_surf(1) y_surf(2)]; 
+          z_surf             z_surf                         z_surf]
+      
+
+
+% points of the surface
+

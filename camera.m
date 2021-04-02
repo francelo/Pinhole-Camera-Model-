@@ -48,13 +48,13 @@ s.EdgeColor = 'none';
 
 w = 0.1;   % width of the object
 h = 0.2;   % height of the object
-% x_surf = linspace(p(1)-w, p(1)+w, 3)
-% y_surf = linspace(p(2)-w, p(2)+w, 3)
-% z_surf = linspace(p(3)-h, p(3)+h, 3)
+x_surf = linspace(p(1)-w, p(1)+w, 3);
+y_surf = linspace(p(2)-w, p(2)+w, 3);
+z_surf = linspace(p(3)-h, p(3)+h, 3);
 
-x_surf = linspace(1.4, 1.8, 4);
-y_surf = linspace(0.1, 0.3, 4);
-z_surf = linspace(0.5, 0.7, 4);
+% x_surf = linspace(1.4, 1.8, 4);
+% y_surf = linspace(0.1, 0.3, 4);
+% z_surf = linspace(0.5, 0.7, 4);
 
 [X_surf, Y_surf] = meshgrid(x_surf,y_surf);
 Z_surf = meshgrid(z_surf);
@@ -77,14 +77,15 @@ for i=1:length(x_surf)
 end
 
 % projection of the points in the image plane
-proj_points = zeros(length(points));
+proj_points = zeros(length(points), 2);
 for i = 1:length(points)
-    proj_points(i, :) = proj(points(i, :)', ang, d, f);
+    [proj_points(i,1), proj_points(i,2)] = proj(points(i, :)', ang, d, f);
 end
 
 
 % plot object
 figure()
+subplot(1,2,1)
 grid on;
 quiver3([O(1);O(1);O(1)],[O(2);O(2);O(2)],[O(3);O(3);O(3)],[versor_origin;0;0],[0;versor_origin;0],[0;0;versor_origin]) % origin frame
 text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
@@ -96,11 +97,11 @@ text([C(1),C(1)+versor_camera,C(1),C(1)], [C(2),C(2),C(2)+versor_camera,C(2)], [
 
 s = surf(X,Y,Z,'FaceAlpha',0.3);
 s.EdgeColor = 'none';
-
-
 s = surf(X_surf,Y_surf,Z_surf,'Facealpha',1);
+hold off;
+
+%
+subplot(1,2,2)
+take_photo(proj_points);
 
 
-for i = 1:16
-    scatter3(linspace(C(1),points(i,1),5), linspace(C(2),points(i,2),5), linspace(C(3),points(i,3),5),' . ')
-end

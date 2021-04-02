@@ -34,7 +34,7 @@ zlim([0,    max(out.moving_point(:,3))])
 
 for i = 1:length(out.moving_point)
     scatter3(out.moving_point(i,1),out.moving_point(i,2),out.moving_point(i,3)); 
-    pause(0.2)
+    pause(0.02)
 end
 
 subplot(1,2,2)

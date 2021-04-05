@@ -15,7 +15,7 @@ The file are organized as follows:
 
 
 <h3>Matlab script</h3>
-To execute the Matlab script is enough to run *camera.m*. Parameters that can be changed are:
+To execute the Matlab script is enough to run **camera.m**. Parameters that can be changed are:
 
 - **O**, which is the position of the world frame;
 - **C**, which is the position of the camera frame;

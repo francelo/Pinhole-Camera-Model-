@@ -13,3 +13,22 @@ The file are organized as follows:
 - **camera_model.slx**, is the simulink model of the pinhole camera, which was also saved in Matlab 2019b (camera_model_2019b.slx);
 - **plot_simulink.m**, which is the script for show the results of the Simulink simulation.
 
+
+<h3>Matlab script</h3>
+To execute the Matlab script is enough to run *camera.m*. Parameters that can be changed are:
+
+- **O**, which is the position of the world frame;
+- **C**, which is the position of the camera frame;
+- **f**, focal distance of the camera, which is a fundamental parameter of the camera.
+
+After the execution of the script will appear two plots: one for the projection of a generic point and one for the projection in the image plane of a inclined rectangle, as mentioned above.
+
+<figure class="image">
+  <img src="pictures/point_projection.png" width="560">
+  <figcaption></figcaption>
+</figure>
+
+<figure class="image">
+  <img src="pictures/rectangle_projection.png" width="560">
+  <figcaption></figcaption>
+</figure>

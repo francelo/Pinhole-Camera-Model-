@@ -23,6 +23,8 @@ To execute the Matlab script is enough to run *camera.m*. Parameters that can be
 
 After the execution of the script will appear two plots: one for the projection of a generic point and one for the projection in the image plane of a inclined rectangle, as mentioned above.
 
+The second plot also contains the projection in a separate chart (as a photograph).
+
 <figure class="image">
   <img src="pictures/point_projection.png" width="560">
   <figcaption></figcaption>
@@ -32,3 +34,6 @@ After the execution of the script will appear two plots: one for the projection 
   <img src="pictures/rectangle_projection.png" width="560">
   <figcaption></figcaption>
 </figure>
+
+
+<h3>Simulink simulation</h3>

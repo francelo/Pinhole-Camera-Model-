@@ -11,7 +11,7 @@ camera_axis = {'oc','zc','xc','yc'};
 plane_y = 0.25;       % y image plane width
 plane_z = 0.18;       % z image plane height
 
-f = 0.35;             % focal lenght
+f = 0.15;             % focal lenght
 p = [1.0; 0.15; 0.8]; % point's position (x,y,z) in world frame
 d = C - O;            % distance between camera and world frame
 ang = [pi/2 pi/2 0];  
@@ -48,13 +48,13 @@ s.EdgeColor = 'none';
 
 w = 0.1;   % width of the object
 h = 0.2;   % height of the object
-x_surf = linspace(p(1)-w, p(1)+w, 3);
-y_surf = linspace(p(2)-w, p(2)+w, 3);
-z_surf = linspace(p(3)-h, p(3)+h, 3);
+% x_surf = linspace(p(1)-w, p(1)+w, 3);
+% y_surf = linspace(p(2)-w, p(2)+w, 3);
+% z_surf = linspace(p(3)-h, p(3)+h, 3);
 
-% x_surf = linspace(1.4, 1.8, 4);
-% y_surf = linspace(0.1, 0.3, 4);
-% z_surf = linspace(0.5, 0.7, 4);
+x_surf = linspace(1.4, 1.8, 4);
+y_surf = linspace(0.1, 0.3, 4);
+z_surf = linspace(0.5, 0.7, 4);
 
 [X_surf, Y_surf] = meshgrid(x_surf,y_surf);
 Z_surf = meshgrid(z_surf);

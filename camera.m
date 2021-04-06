@@ -107,6 +107,8 @@ hold off;
 
 %
 subplot(1,2,2)
+ xlim([min(proj_points(:,1))-0.05, max(proj_points(:,1))+0.05]);
+ ylim([min(proj_points(:,2))-0.05, max(proj_points(:,2))+0.05]);
 take_photo(proj_points);
 
 

@@ -32,11 +32,19 @@ xlim([-0.2, max(out.moving_point(:,1))])
 ylim([-0.2, max(out.moving_point(:,2))])
 zlim([0,    max(out.moving_point(:,3))])
 
+subplot(1,2,2)
+ xlim([min(out.moving_projection(:,1))-0.02, max(out.moving_projection(:,1))+0.02])
+ ylim([min(out.moving_projection(:,2))-0.02, max(out.moving_projection(:,2))+0.02])
+
+
 for i = 1:length(out.moving_point)
-    scatter3(out.moving_point(i,1),out.moving_point(i,2),out.moving_point(i,3)); 
+    subplot(1,2,1)
+    scatter3(out.moving_point(i,1),out.moving_point(i,2),out.moving_point(i,3));
+    subplot(1,2,2)
+    cla(subplot(1,2,2))
+    take_photo(out.moving_projection(i,:))
+    
     pause(0.02)
 end
 
-subplot(1,2,2)
-take_photo(out.moving_projection)
 

@@ -4,40 +4,40 @@ This project is a simple implementation of the pinhole camera model in Matlab 20
 
 The file are organized as follows:
 
-- **sistemi_di_riferimento.m**, which is just a script to explain the reference systems that are *world frame* and *camera frame*;
-- **camera.m**, which is a script that simulates a projection in the image plane for a point and for a rectangle e creates the relative plots;
-- **proj.m**, which contains the function that executes the projection in the image plain;
-- **rot.m**, which contains the function that executes the rototraslation from world frame to camera frame;
-- **take_photo**, which is a function that returns the projection in another plot 2D (like a photograph);
-- **init.m**, is the file in which the variable for the Simulink simulation are initialized;
-- **camera_model.slx**, is the simulink model of the pinhole camera, which was also saved in Matlab 2019b (camera_model_2019b.slx);
-- **plot_simulink.m**, which is the script for show the results of the Simulink simulation.
+- **sistemi_di_riferimento.m** : script that creates the reference systems *world frame* and *camera frame*;
+- **camera.m** : It is the main matlab sript. It simulates the projection in the image plane of a point and a rectangle, located in front of the camera at a fixed distance and creates the relative plots;
+- **proj.m** : function that executes the projection in the image plane;
+- **rot.m** : function that executes the rototraslation from world frame to camera frame;
+- **take_photo** : function that returns the projection in another 2D plot (like a photograph);
+- **init.m** : file in which the variable for the Simulink simulation are initialized;
+- **camera_model.slx** : simulink model of the pinhole camera, which was also saved in Matlab 2019b (camera_model_2019b.slx);
+- **plot_simulink.m** : script that shows the results of the Simulink simulation.
 
 
 <h3>Matlab script</h3>
-To execute the Matlab script is enough to run **camera.m**. Parameters that can be changed are:
+To execute the Matlab script is enough to run camera.m. Parameters that can be changed are:
 
 - **O**, which is the position of the world frame;
 - **C**, which is the position of the camera frame;
 - **f**, focal distance of the camera, which is a fundamental parameter of the camera.
 
-After the execution of the script will appear two plots: one for the projection of a generic point and one for the projection in the image plane of a inclined rectangle, as mentioned above.
+After the execution of the script two plots will appear: one for the projection of a generic point and one for the projection in the image plane of an inclined rectangle, as mentioned above.
 
 The second plot also contains the projection in a separate chart (as a photograph).
 
 <figure class="image">
-  <img src="pictures/point_projection.png" width="560">
+  <img src="pictures/point_projection.png" width="760">
   <figcaption></figcaption>
 </figure>
 
 <figure class="image">
-  <img src="pictures/rectangle_projection.png" width="560">
+  <img src="pictures/rectangle_projection.png" width="760">
   <figcaption></figcaption>
 </figure>
 
 
 <h3>Simulink simulation</h3>
 
-To execute the simulation it is first necessary to run the **init.m** file in order to declare all the costants which are used in the simulation. After that it is possible the simulink file **camera_model.slx** and finally it is possible to execute **plot_simulink.m** to show the results.
+To execute the simulation it is first necessary to run the **init.m** file in order to declare all the costants which are used in the simulation. After that it is possible to run the simulink file **camera_model.slx** and finally it is possible to execute **plot_simulink.m** to show the results.
 
 Currently this section concerning simulink is still in progress.

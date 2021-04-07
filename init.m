@@ -8,4 +8,9 @@ C = [0.2; 0.3; 0.6];  % camera origin frame
 f = 0.05;             % focal lenght
 p = [1.0; 0.15; 0.8]; % point's position (x,y,z) in world frame
 d = C - O;            % distance between camera and world frame
-ang = [pi/2 pi/2 0];  
+ang = [pi/2 pi/2 0]; 
+init_pose = [C ; ang'];
+frequency = 200;       % sampling frequency [Hz]
+delta_t = 1/frequency; % sampling time [s]
+Kp = eye(2);
+

@@ -13,5 +13,5 @@ init_pose = [C ; ang'];
 frequency = 200;       % sampling frequency [Hz]
 delta_t = 1/frequency; % sampling time [s]
 Kp = 100*eye(2);
-Kd = 0*eye(2);
+Kd = 0.3*eye(2);
 

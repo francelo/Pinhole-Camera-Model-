@@ -46,16 +46,22 @@ for i = 1:length(out.pose)
 %     Z = meshgrid(z);
 %     s = surf(X,Y,Z, ang,'FaceAlpha',0.3);
 %     s.EdgeColor = 'none';
-    scatter3(p(1),p(2),p(3));
+    scatter3(p1(1),p1(2),p1(3));
+    scatter3(p2(1),p2(2),p2(3));
     
     %% subplot 2
     cla(subplot(1,2,2));
     grid on
-    xlim([-max(out.proj(:,1))-0.02, max(out.proj(:,1))+0.02])
-    ylim([-max(out.proj(:,2))-0.02, max(out.proj(:,2))+0.02])
-    take_photo(out.proj(i,:))
-    
-    pause(0.025);
+    xlim([-max(out.proj1(:,1))-0.02, max(out.proj1(:,1))+0.02])
+    ylim([-max(out.proj1(:,2))-0.02, max(out.proj1(:,2))+0.02])
+    scatter(ref1(1),ref1(2),'red','x');
+    scatter(ref2(1),ref2(2),'red','x');
+    take_photo(out.proj1(i,:))
+    take_photo(out.proj2(i,:))
+    pause(0.01);
 end
 
-scatter(out.proj)
+take_photo(out.proj1)
+take_photo(out.proj2)
+
+

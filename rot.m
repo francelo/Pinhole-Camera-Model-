@@ -13,6 +13,6 @@ Rz = [cos(c) -sin(c) 0;
        0      0     1];
 
 
-R = Rx*Ry*Rz;
+R = Rz * Ry * Rx;
 end
 

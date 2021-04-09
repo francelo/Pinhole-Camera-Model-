@@ -14,7 +14,7 @@ plane_z = 0.18;       % z image plane height
 f = 0.15;             % focal lenght
 p = [1.0; 0.15; 0.8]; % point's position (x,y,z) in world frame
 d = C - O;            % distance between camera and world frame
-ang = [pi/2 pi/2 0];  
+ang = [-pi/2 0 -pi/2];  
 
 [x_proj, y_proj] = proj(p, ang, d, f); % computes the projection of the point in the image plane
 

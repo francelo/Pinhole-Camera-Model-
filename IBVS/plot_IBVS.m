@@ -55,14 +55,14 @@ for i = 1:length(out.pose)
     scatter(ref1(1),ref1(2),'red','x');
     scatter(ref2(1),ref2(2),'red','x');
     grid on
-    xlim([-max(out.proj1(:,1))-0.02, max(out.proj1(:,1))+0.02])
-    ylim([-max(out.proj1(:,2))-0.02, max(out.proj1(:,2))+0.02])
+    xlim([-0.45, 0.45])
+    ylim([-0.18, 0.18])
     take_photo(out.proj1(i,:))
     take_photo(out.proj2(i,:))
     pause(0.0005);
 end
 
-take_photo(out.proj1)
-take_photo(out.proj2)
+% take_photo(out.proj1)
+% take_photo(out.proj2)
 
 

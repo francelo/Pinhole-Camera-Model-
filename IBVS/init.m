@@ -5,7 +5,7 @@ clear, clc, close all;
 O = [0; 0; 0];        % world origin frame
 C = [0.2; -0.3; 0.6];  % camera origin frame
 
-f = 0.8;             % focal lenght
+f = 0.5;             % focal lenght
 % p = [2.1; 0.17; 0.8]; % point's position (x,y,z) in world frame
 
 d = C - O;            % distance between camera and world frame
@@ -16,8 +16,8 @@ dT = 1/frequency; % sampling time [s]
 
 
 % % points' position (x,y,z) in world frame
-p1 = [2.4; 0.8; 1.1]; 
-p2 = [2.4; 0.1; 1.1]; 
+p1 = [2.4; 0.55; 1.1]; 
+p2 = [2.4; 0.25; 1.1]; 
 % reference 
 ref1 = [-0.35; -0.0];
 ref2 = [0.15;  -0.0];

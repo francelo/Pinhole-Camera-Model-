@@ -8,8 +8,7 @@ p_cam = Twc^-1 * [p;1];   % point's position in camera frame
 P = diag([f,f,1]) * [eye(3), zeros(3,1)]; % camera projection matrix
 
 p_tilde = P*p_cam;       
-x_proj = p_tilde(1)/p(3);
-y_proj = p_tilde(2)/p(3);
-Zc = p_cam(3)
+x_proj = p_tilde(1)/p_cam(3);
+y_proj = p_tilde(2)/p_cam(3);
 
 end

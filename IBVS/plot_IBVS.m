@@ -36,7 +36,7 @@ for i = 1:length(out.pose)
     text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
     
     rotation = rot(ang(i,1),ang(i,2),ang(i,3));
-    quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)',rotation(2,:)',rotation(3,:)') % camera frame
+    quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/2,rotation(2,:)'/2,rotation(3,:)'/2) % camera frame
 
 %   image plane
 %     x = linspace(C(1)+f,C(1)+f,20);
@@ -62,7 +62,7 @@ for i = 1:length(out.pose)
     pause(0.0005);
 end
 
-% take_photo(out.proj1)
-% take_photo(out.proj2)
+take_photo(out.proj1)
+take_photo(out.proj2)
 
 

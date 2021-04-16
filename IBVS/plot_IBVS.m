@@ -6,6 +6,8 @@ versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 plane_y = 0.25;       % y image plane width
 plane_z = 0.18;       % z image plane height
+p1_ = out.p(:, 1:3);
+p2_ = out.p(:, 4:6);
 
 %% plot point
 
@@ -22,8 +24,7 @@ plane_z = 0.18;       % z image plane height
 x_pose = out.pose(:, 1);
 y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
-ang = out.pose(:, 4:6);
-
+ang = out.pose(:, 4:6); 
 
 for i = 1:length(out.pose)
     %% subplot 1
@@ -36,18 +37,10 @@ for i = 1:length(out.pose)
     text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
     
     rotation = rot(ang(i,1),ang(i,2),ang(i,3));
-    quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/2,rotation(2,:)'/2,rotation(3,:)'/2) % camera frame
-
-%   image plane
-%     x = linspace(C(1)+f,C(1)+f,20);
-%     y = linspace(C(2)-plane_y,C(2)+plane_y,20);
-%     z = linspace(C(3)-plane_z,C(3)+plane_z,20);
-%     [X, Y] = meshgrid(x,y);
-%     Z = meshgrid(z);
-%     s = surf(X,Y,Z, ang,'FaceAlpha',0.3);
-%     s.EdgeColor = 'none';
-    scatter3(p1(1),p1(2),p1(3));
-    scatter3(p2(1),p2(2),p2(3));
+    quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
+    
+    scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
+    scatter3(p2_(i,1), p2_(i,2), p2_(i,3));
     
     %% subplot 2
     cla(subplot(1,2,2));

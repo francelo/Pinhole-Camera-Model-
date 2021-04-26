@@ -35,7 +35,7 @@ for i = 1:length(out.pose)
     scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
     scatter3(p2_(i,1), p2_(i,2), p2_(i,3));
     
-%     %% subplot 2
+     %% subplot 2
 %     cla(subplot(1,2,2));
 %     hold on
 %     scatter(ref(1:3),'red','x');

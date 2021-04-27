@@ -38,10 +38,9 @@ for i = 1:length(out.pose)
      %% subplot 2
     cla(subplot(1,2,2));
     hold on
-    grid on
-    axis([0 100 min(min(out.error)) max(max(out.error))])
+    axis([0 XMAX YMIN YMAX])
     plot(out.error(1:i, :))
-    pause(0.001);
+    pause(0.0005);
 end
 
 

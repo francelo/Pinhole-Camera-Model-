@@ -26,4 +26,4 @@ ref = [-0.2; 0; 0; pi/2; 0 ; pi/2];
 
 % control
 Kp = 1*eye(6);
-Kd = 0*eye(2);
+%Kd = 0*eye(6);

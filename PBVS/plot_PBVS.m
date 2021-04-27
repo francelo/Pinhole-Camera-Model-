@@ -6,8 +6,8 @@ versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 plane_y = 0.25;       % y image plane width
 plane_z = 0.18;       % z image plane height
-p1_ = out.p(:, 1:3);
-p2_ = out.p(:, 4:6);
+p1_ = out.p;
+
 
 %% plot point
 
@@ -33,7 +33,7 @@ for i = 1:length(out.pose)
     quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
     
     scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
-    scatter3(p2_(i,1), p2_(i,2), p2_(i,3));
+  
     
      %% subplot 2
 %     cla(subplot(1,2,2));

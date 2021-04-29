@@ -24,5 +24,5 @@ ref2 = [0.18;  -0.0];
 ref = [ref1; ref2];
 
 % control
-Kp = 10*eye(4);
-Kd = 0.1*eye(4);
+Kp = 1*eye(4);
+Kd = 0*eye(4);

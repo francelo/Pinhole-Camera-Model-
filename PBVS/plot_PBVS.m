@@ -30,10 +30,13 @@ for i = 1:length(out.pose)
     text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
     
     rotation = rot(ang(i,1),ang(i,2),ang(i,3));
-    quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
+    %quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
     
     scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
-  
+    
+    config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7'},...
+        'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7)});
+    show(robot, config);
     
      %% subplot 2
     cla(subplot(1,2,2));

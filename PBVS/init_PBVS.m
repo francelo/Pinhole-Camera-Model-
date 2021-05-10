@@ -3,9 +3,11 @@ clear, clc, close all;
 %% parameters
 
 robot = importrobot('frankaEmikaPanda.urdf');
-q_init = zeros(1, 9);
-syms q1 q2 q3 q4 q5 q6 q7 q8 q9
-config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7','panda_finger_joint1', 'panda_finger_joint2'},'JointPosition',{q1,q2,q3,q4,q5,q6,q7,q8,q9});
+removeBody(robot, 'panda_leftfinger');
+removeBody(robot, 'panda_rightfinger');
+q_init = [0 0 0 -pi/2 0 0 0];
+syms q1 q2 q3 q4 q5 q6 q7 
+config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7'},'JointPosition',{q1,q2,q3,q4,q5,q6,q7});
 
 O = [0; 0; 0];        % world origin frame
 C = [0.2; 0.3; 0.2];  % camera origin frame
@@ -27,7 +29,7 @@ p2 = [1.7; 0.85; 0.1];
 %ref1 = [-0.18; -0.0];
 %ref2 = [0.18;  -0.0];
 %ref = [ref1; ref2];
-ref = [-0.2; 0; 0; pi/2; 0 ; pi/2];
+ref = [0; 0; 0.2; 0; 0 ; pi/2];
 
 % control
 Kp = 10*eye(6);

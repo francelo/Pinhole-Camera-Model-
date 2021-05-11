@@ -1,5 +1,6 @@
 %%
 figure()
+set(gcf,'position',[300,400,1280,720])
 subplot(1,2,1)
 versor_origin = 0.4;
 versor_camera = 0.2;
@@ -34,6 +35,15 @@ for i = 1:length(out.pose)
     
     scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
     scatter3(p2_(i,1), p2_(i,2), p2_(i,3));
+    
+    %rotation = rot(ang(i,1),ang(i,2),ang(i,3));
+    %quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
+    
+    scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
+    
+    config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7'},...
+        'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7)});
+    show(robot, config);
     
     %% subplot 2
     cla(subplot(1,2,2));

@@ -1,5 +1,6 @@
 %%
 figure()
+set(gcf,'position',[300,400,1280,720])
 subplot(1,2,1)
 versor_origin = 0.4;
 versor_camera = 0.2;
@@ -44,7 +45,7 @@ for i = 1:length(out.pose)
     grid on
     axis([0 100 min(min(out.error)) max(max(out.error))])
     plot(out.error(1:i, :))
-    pause(0.001);
+    pause(0.01);
 end
 
 

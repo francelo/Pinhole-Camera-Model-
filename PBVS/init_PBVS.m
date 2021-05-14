@@ -40,3 +40,8 @@ ref = [0; 0; 0.15; 0;  0; -pi];
 %Kp = 5*eye(6);
 Kp = diag([1 1 1 2 2 2]);
 Kd = 0*eye(6);
+
+% Kalman Filter parameters
+R = diag([0.00001 0.00001 0.00001 0.00001 0.00001 0.00001]);
+Q = zeros(6);
+DT = 1/10; % [Hz]

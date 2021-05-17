@@ -28,8 +28,8 @@ dT = 1/frequency;      % sampling time [s]
 
 
 % % points' position (x,y,z) in world frame
-p1 = [0.2; 0.5; 0.25]; 
-p2 = [0.4; 0.8; 0.1]; 
+p = [0.2; 0.5; 0.25]; 
+ 
 % reference 
 %ref1 = [-0.18; -0.0];
 %ref2 = [0.18;  -0.0];

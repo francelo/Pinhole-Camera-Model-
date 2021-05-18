@@ -28,7 +28,7 @@ dT = 1/frequency;      % sampling time [s]
 
 
 % % points' position (x,y,z) in world frame
-p = [0.2; 0.2; 0.25]; 
+p = [0.2; -0.0; 0.25]; 
  
 % reference 
 %ref1 = [-0.18; -0.0];
@@ -37,15 +37,15 @@ p = [0.2; 0.2; 0.25];
 ref = [0; 0; 0.15; 0;  0; -pi];
 
 % control
-%Kp = 5*eye(6);
-Kp = diag([2 2 2 2 2 2]);
-Kd = 0*eye(6);
+Kp = 5*eye(6);
+%Kp = diag([4 4 4 2 2 2]);
+Kd = 0.1*eye(6);
 
 
 % Kalman Filter parameters
 R = diag([0.00001 0.00001 0.00001 0.00001 0.00001 0.00001]);
 Q = zeros(6);
-DT = 1/50; % [Hz]
+DT = 1/20; % [Hz]
 
 % PNG
 beta = 0.01; % fading filter

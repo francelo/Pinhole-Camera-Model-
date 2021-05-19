@@ -1,12 +1,10 @@
 %%
-figure()
+h = figure();
 set(gcf,'position',[200,200,1280,720])
 subplot(1,2,1)
 versor_origin = 0.4;
 versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
-plane_y = 0.25;       % y image plane width
-plane_z = 0.18;       % z image plane height
 p1_ = out.p;
 
 
@@ -20,9 +18,10 @@ y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
 ang = out.pose(:, 4:6); 
 
-for i = 1:length(out.pose)
-    %% subplot 1
-    cla(subplot(1,2,1));
+for i = 2:length(out.pose)
+    
+    %% subplot 1 (robot)
+    cla(subplot(3,2,[1 3 5]));
     grid on; 
     axis equal
     
@@ -39,15 +38,43 @@ for i = 1:length(out.pose)
         'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7),out.q(i,8),out.q(i,9)});
     show(robot, config);
     
-     %% subplot 2
-    cla(subplot(1,2,2));
+     %% subplot 2 (error)
+    cla(subplot(3,2,2));
     hold on
     grid on
-    axis([0 100 min(min(out.error)) max(max(out.error))])
+    axis([0 100 -1 0.3])
     plot(out.error(1:i, :))
+    title('Error')
+    
+    %% subplot 3 (states)
+    cla(subplot(3,2,4));
+    hold on
+    grid on
+    axis([0 100 -0.1 1.1])
+    plot(out.states(1:i, :))
+    legend("camera flag", 'control flag')
+    title('States')
+    
+    %% subplot 4
+    cla(subplot(3,2,6));
+    hold on
+    grid on
+    scatter(out.proj(i,1), out.proj(i,2))
+    rectangle('Position',[-plane_x -plane_y 2*plane_x 2*plane_y])
+    axis([(-plane_x-0.002) (plane_x+0.002) (-plane_y-0.02) (plane_y+0.02)])
+    axis equal
+    title('Image Plane');
+    
+    %%
     pause(0.01);
+    F(i) = getframe(h);
 end
 
+%%
 
-
+% video = VideoWriter('PBVS.avi', 'Uncompressed AVI');
+% video.FrameRate = 5;
+% open(video);
+% writeVideo(video, F);
+% close(video);
 

@@ -8,11 +8,11 @@ versor_origin = 0.4;
 versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 camera_axis = {'oc','zc','xc','yc'};
-plane_y = 0.25;       % y image plane width
-plane_z = 0.18;       % z image plane height
+plane_y = 0.1;       % y image plane width
+plane_z = 0.08;       % z image plane height
 
-f = 0.15;             % focal lenght
-p = [1.0; 0.15; 0.8]; % point's position (x,y,z) in world frame
+f = 0.05;             % focal lenght
+p = [1.0; 1.85; 0.8]; % point's position (x,y,z) in world frame
 d = C - O;            % distance between camera and world frame
 ang = [pi/2 0.0 pi/2];  
 

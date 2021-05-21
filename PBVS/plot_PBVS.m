@@ -66,7 +66,7 @@ for i = 2:length(out.pose)
     title('Image Plane');
     
     %%
-    pause(0.01);
+    pause(0.001);
     F(i) = getframe(h);
 end
 

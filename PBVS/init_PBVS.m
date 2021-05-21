@@ -46,7 +46,7 @@ Kd = 0.1*eye(6);
 
 
 % Kalman Filter parameters
-P0 = eye(6)*0.5;
+P0 = eye(6)*1;
 R = eye(6)*0.001;
 Q = zeros(6);
 DT = 1/20; % [Hz]

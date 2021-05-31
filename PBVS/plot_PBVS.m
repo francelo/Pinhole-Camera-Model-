@@ -29,8 +29,8 @@ for i = 2:length(out.pose)
     quiver3([O(1);O(1);O(1)],[O(2);O(2);O(2)],[O(3);O(3);O(3)],[versor_origin;0;0],[0;versor_origin;0],[0;0;versor_origin]) % world frame
     text([O(1),O(1)+versor_origin,O(1),O(1)], [O(2),O(2),O(2)+versor_origin,O(2)], [O(3),O(3),O(3),O(3)+versor_origin], origin_axis)
     
-    rotation = rot(ang(i,1),ang(i,2),ang(i,3));
-    %quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/4,rotation(2,:)'/4,rotation(3,:)'/4) % camera frame
+    %rotation = rot(ang(i,1),ang(i,2),ang(i,3))*rot(0,pi/2,pi);
+    %quiver3([x_pose(i);x_pose(i);x_pose(i)],[y_pose(i);y_pose(i);y_pose(i)],[z_pose(i);z_pose(i);z_pose(i)],rotation(1,:)'/2,rotation(2,:)'/3,rotation(3,:)'/3) % camera frame
     
     scatter3(p1_(i,1), p1_(i,2), p1_(i,3));
     

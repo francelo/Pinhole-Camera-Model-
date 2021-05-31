@@ -30,20 +30,17 @@ init_pose = [position(1:3); orientation'];
 frequency = 500;       % sampling frequency [Hz]
 dT = 1/frequency;      % sampling time [s]
 
-
 % % points' position (x,y,z) in world frame
-p = [0.5; 0.0; 0.2]; 
+p = [0.35; 0.1; 0.2]; 
  
 % reference 
-%ref1 = [-0.18; -0.0];
-%ref2 = [0.18;  -0.0];
-%ref = [ref1; ref2];f
+
 ref = [0; 0; 0.1; 0;  0; -pi];
 tolerance = 0.02; % error tolerance [cm]
 
 % control
 %Kp = diag([6 6 6 8 8 8]);
-Kp = diag([3 3 3 15 15 15]);
+Kp = diag([1 1 1 3 3 3]);
 %Kp = eye(6)*5;
 Kd = 0.1*eye(6);
 Kh = eye(9);     % 
@@ -55,7 +52,3 @@ P0 = eye(6)*1;
 R = eye(6)*0.001;
 Q = zeros(6);
 DT = 1/20; % [Hz]
-
-% PNG
-beta = 0.01; % fading filter
-N = 10; % PNG parameter

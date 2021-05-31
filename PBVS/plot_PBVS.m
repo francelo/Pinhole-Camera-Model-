@@ -42,7 +42,7 @@ for i = 2:length(out.pose)
     cla(subplot(3,2,2));
     hold on
     grid on
-    axis([0 100 -1 0.3])
+    axis([0 length(out.error) -1 0.3])
     plot(out.error(1:i, :))
     title('Error')
     
@@ -50,9 +50,9 @@ for i = 2:length(out.pose)
     cla(subplot(3,2,4));
     hold on
     grid on
-    axis([0 100 -0.1 1.1])
+    axis([0 length(out.states) -0.1 1.1])
     plot(out.states(1:i, :))
-    legend("camera flag", 'control flag')
+    legend("camera flag", 'control flag','grasp flag')
     title('States')
     
     %% subplot 4

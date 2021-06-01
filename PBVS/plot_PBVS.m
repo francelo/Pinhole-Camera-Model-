@@ -1,6 +1,6 @@
 %%
 h = figure();
-set(gcf,'position',[200,200,1280,720])
+set(gcf,'position',[100,50,1280,720])
 subplot(1,2,1)
 versor_origin = 0.4;
 versor_camera = 0.2;

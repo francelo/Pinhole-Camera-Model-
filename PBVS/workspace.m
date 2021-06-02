@@ -55,7 +55,8 @@ theta5 = (theta5_max - theta5_min).*rand(N,1) + theta5_min;
 theta6 = (theta6_max - theta6_min).*rand(N,1) + theta6_min;
 theta7 = (theta7_max - theta7_min).*rand(N,1) + theta7_min;
 
-theta4 = theta2 - theta6;
+theta4 = (theta4_max - theta4_min).*rand(N,1) + theta4_min;
+%theta4 = theta2 - theta6;
 
 %% iterations
 for i = 1:N

@@ -37,6 +37,11 @@ for i = 2:length(out.pose)
     config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7','panda_finger_joint1','panda_finger_joint2'},...
         'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7),out.q(i,8),out.q(i,9)});
     show(robot, config);
+    if out.remaining_time(i) == 0
+        title('remaining time [s]:', '-')
+    else
+        title('remaining time [s]:', out.remaining_time(i))
+    end
     
      %% subplot 2 (error)
     cla(subplot(3,2,2));
@@ -66,13 +71,13 @@ for i = 2:length(out.pose)
     title('Image Plane');
     
     %%
-    pause(0.001);
+    pause(0.0001);
     F(i) = getframe(h);
 end
 
 %%
-
-% video = VideoWriter('PBVS.avi', 'Uncompressed AVI');
+% 
+% video = VideoWriter('PBVS without SOT.avi', 'Uncompressed AVI');
 % video.FrameRate = 5;
 % open(video);
 % writeVideo(video, F);

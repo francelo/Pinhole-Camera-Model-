@@ -9,7 +9,7 @@ robot = loadrobot('frankaEmikaPanda');
 % removeBody(robot, 'panda_link7');
 
 % initial 
-q_init = [(0.0) (0.0) (0.0) (-pi/2) (0.0) (pi/2) (pi/4) (0.04) (0.04)];
+q_init = [(0.0) (0.0) (0.0) (-pi/3) (0.0) (pi/3) (pi/4) (0.04) (0.04)];
 
 config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7','panda_finger_joint1','panda_finger_joint2'},...
         'JointPosition',{q_init(1),q_init(2),q_init(3),q_init(4),q_init(5),q_init(6),q_init(7),q_init(8),q_init(9)});
@@ -30,7 +30,7 @@ frequency = 100;       % sampling frequency [Hz]
 dT = 1/frequency;      % sampling time [s]
 
 % % points' position (x,y,z) in world frame
-p = [0.4; 0.1; 0.2]; 
+p = [0.4; 0.3; 0.2]; 
  
 % reference 
 
@@ -41,7 +41,7 @@ tolerance = 0.02; % error tolerance [cm]
 %Kp = diag([6 6 6 8 8 8]);
 Kp = diag([1.3 1.3 1.3 1.3 1.3 1.3]);
 %Kp = eye(6)*5;
-Kd = 0.1*eye(6);
+Kd = 0.0*eye(6);
 Kh = eye(9);     % 
 Kg = 3*eye(9);   % gripper gain matrix
 

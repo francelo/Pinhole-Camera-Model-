@@ -39,12 +39,11 @@ for i = 2:length(out.pose)
     show(robot, config);
     
     if out.remaining_time(i) == 0
-        title('remaining time [s]:', '-')
-    else
-        if out.remaining_time(i) > 999
-            title('remaining time [s]:', 'Inf')
+        title('Remaining time [s]:', '-')
+    else if out.remaining_time(i) > 100
+            title('Remaining time [s]:', '∞')
         else
-            title('remaining time [s]:', out.remaining_time(i))
+            title('Remaining time [s]:', out.remaining_time(i))
         end
     end
     

@@ -30,7 +30,7 @@ frequency = 100;       % sampling frequency [Hz]
 dT = 1/frequency;      % sampling time [s]
 
 % points' pose in world frame
-p = [0.4; 0.4; 0.2];     % points' position (x,y,z)
+p = [0.4; 0.3; 0.2];     % points' position (x,y,z)
 o = [0; 0; pi/8];        % points' orientation 
  
 % reference - camera desired pose relative to the object 
@@ -49,3 +49,6 @@ P0 = eye(6)*1;
 R = eye(6)*0.001;
 Q = zeros(6);
 DT = 1/20; % [1/Hz]
+
+% plot sample time
+st = 0.05;

@@ -7,7 +7,7 @@ versor_camera = 0.2;
 origin_axis = {'O';'X';'Y';'Z'};
 p_pos = out.p(:,1:3); % point position
 p_or = out.p(:, 4:6); % point orientation
-
+time = linspace(0,length(out.states)*st,length(out.states));
 
 %% plot point
 
@@ -46,21 +46,25 @@ for i = 2:length(out.pose)
     else
         title('Remaining time [s]:', out.remaining_time(i))
     end
-   
+    delete(findall(gcf,'type','annotation'))
+    annotation('textbox', [0, 0.96, 0, 0], 'string', 'Object-Velocity[m/s]:')
+    annotation('textbox', [0, 0.93, 0, 0], 'string',  round(out.speed(i,:),5))
+   % annotation('textbox', [0, 0.87, 0.115, 0], 'string', '')
+    
      %% subplot 2 (error)
     cla(subplot(3,2,2));
     hold on
     grid on
-    axis([0 length(out.error) -1 0.3])
-    plot(out.error(1:i, :))
+    axis([0 length(out.states)*st -0.8 0.8]);
+    plot(time(1:i), out.error(1:i, :))
     title('Error')
     
     %% subplot 3 (states)
     cla(subplot(3,2,4));
     hold on
     grid on
-    axis([0 length(out.states) -0.1 1.1])
-    plot(out.states(1:i, :))
+    axis([0 length(out.states)*st -0.1 1.1]);
+    plot(time(1:i), out.states(1:i, :))
     legend("camera flag", 'control flag','grasp flag')
     title('States')
     
@@ -81,9 +85,9 @@ end
 
 %%
 % 
-% video = VideoWriter('PBVS without SOT.avi', 'Uncompressed AVI');
-% video.FrameRate = 5;
+% video = VideoWriter('Simulation.avi', 'Uncompressed AVI');
+% video.FrameRate = 10;
 % open(video);
-% writeVideo(video, F);
+% writeVideo(video, F(2:end));
 % close(video);
 

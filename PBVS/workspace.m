@@ -1,7 +1,7 @@
 %% load robot
 close all;
 robot = loadrobot('frankaEmikaPanda');
-q_init = [(0.0) (0.0) (0.0) (-pi/2) (0.0) (pi/2) (pi/4) (0.04) (0.04)];
+q_init = [(0.0) (0.0) (0.0) (-pi/3) (0.0) (pi/3) (pi/4) (0.04) (0.04)];
 
 config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7','panda_finger_joint1','panda_finger_joint2'},...
         'JointPosition',{q_init(1),q_init(2),q_init(3),q_init(4),q_init(5),q_init(6),q_init(7),q_init(8),q_init(9)});
@@ -91,10 +91,24 @@ grid on
 
 view(2);
 
+%% 
+figure()
+hold on
+show(robot,config,'visuals','on')
+[X, Y, Z] = cylinder(0.7);
+surf(X,Y,Z,'FaceAlpha',0.2);
+scatter3(0.4, -0.22, 0.2);
+axis equal;
+view(2);
+%camroll(pi/2);
 
+
+%%
 function T = Transf(a, b, c, d )
 T = [ cos(d),    -sin(d)*cos(b),      sin(d)*sin(b),    a*cos(d);
       sin(d),     cos(d)*cos(b),     -cos(d)*sin(b),    a*sin(d);
       0,            sin(b),             cos(b),           c;
       0,            0,                    0,              1];
 end
+
+

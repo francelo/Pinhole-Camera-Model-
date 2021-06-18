@@ -73,6 +73,9 @@ for i = 2:length(out.pose)
     hold on
     grid on
     scatter(out.proj(i,1), out.proj(i,2))
+    scatter(out.proj(i,3), out.proj(i,4))
+    scatter(out.proj(i,5), out.proj(i,6))
+    scatter(out.proj(i,7), out.proj(i,8))
     rectangle('Position',[-plane_x -plane_y 2*plane_x 2*plane_y])
     axis([(-plane_x-0.002) (plane_x+0.002) (-plane_y-0.02) (plane_y+0.02)])
     axis equal

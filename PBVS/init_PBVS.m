@@ -30,10 +30,17 @@ frequency = 100;       % sampling frequency [Hz]
 dT = 1/frequency;      % sampling time [s]
 
 % points' pose in world frame
-p = [0.4; 0.4; 0.2];     % points' position (x,y,z)
+p = [0.4; 0.3; 0.2];     % points' position (x,y,z)
 o = [0; 0; pi/8];        % points' orientation 
 l1 = 0.06;
 l2 = 0.04;
+
+% camera relative frame
+phi = 0;
+theta = pi;
+psi = pi/2;
+R_cam = rot(phi, theta, psi);
+camera_offset = [0.0; 0.0; 0.0];
  
 % reference - camera desired pose relative to the object 
 ref = [0; 0; 0.08; 0;  0; -pi];

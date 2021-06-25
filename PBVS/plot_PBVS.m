@@ -19,7 +19,7 @@ y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
 ang = out.pose(:, 4:6); 
 
-for i = 80:length(out.pose)
+for i = 39:length(out.pose)
     
     %% subplot 1 (robot)
     cla(subplot(3,2,[1 3 5]));
@@ -56,7 +56,23 @@ for i = 80:length(out.pose)
     
     config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5','panda_joint6','panda_joint7','panda_finger_joint1','panda_finger_joint2'},...
         'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7),out.q(i,8),out.q(i,9)});
-    show(robot, config);
+    show(robot,config);
+    
+    Tec = [R_cam         camera_offset;          % transformation from camera to end effector
+           zeros(1,3)          1]; 
+   
+    cam_pose = Tec * [out.pose(i,1:3)'; 1];
+    cam_orient = R_cam*rot(ang(i,3),ang(2),ang(i,1));
+    
+   % quiver3([cam_pose(1);cam_pose(1);cam_pose(1)],[cam_pose(2);cam_pose(2);cam_pose(2)],[cam_pose(3);cam_pose(3);cam_pose(3)],cam_orient(1,:)'/4,cam_orient(2,:)'/4,cam_orient(3,:)'/4) % camera frame
+    
+
+
+
+    ee_rot = rot(ang(i,3),ang(i,2),ang(i,1)) * R_cam ;
+    quiver3([out.pose(i,1);out.pose(i,1);out.pose(i,1)],[out.pose(i,2);out.pose(i,2);out.pose(i,2)],[out.pose(i,3);out.pose(i,3);out.pose(i,3)],ee_rot(1,:)'/4,ee_rot(2,:)'/4,ee_rot(3,:)'/4) % ee frame
+   
+    
     
     if out.remaining_time(i) == 0
         title('Remaining time [s]:', '-')

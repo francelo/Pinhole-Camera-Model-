@@ -20,7 +20,7 @@ y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
 ang = out.pose(:, 4:6); 
 
-for i = 40:length(out.pose)
+for i = 2:length(out.pose)
     
     %% subplot 1 (robot)
     cla(subplot(3,2,[1 3 5]));
@@ -109,7 +109,7 @@ for i = 40:length(out.pose)
     pause(0.0001);
 end
 
-take_photo(out.proj1)
-take_photo(out.proj2)
+%take_photo(out.proj1)
+%take_photo(out.proj2)
 
 

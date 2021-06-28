@@ -16,9 +16,9 @@ config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda
   
 workspace_dim = 0.7;  % robot workspace [m]
 O = [0; 0; 0];        % world origin frame
-f = 0.08;              % focal lenght
-plane_x = 0.1;        % x image plane width
-plane_y = 0.08;       % y image plane height
+f = 0.025;            % focal lenght
+plane_x = 0.12;       % x image plane width
+plane_y = 0.1;        % y image plane height
 
 T = getTransform(robot,config,'panda_link1','panda_hand');
 position = T^-1 * [O; 1];
@@ -40,10 +40,10 @@ phi = 0;
 theta = pi;
 psi = pi/2;
 R_cam = rot(phi, theta, psi);
-camera_offset = [0.0; 0.0; 0.0];
+camera_offset = rot(pi, 0, 0) * [-0.02; 0.0; -0.06];
  
 % reference - camera desired pose relative to the object 
-ref = [0; 0; 0.08; 0;  0; -pi];
+ref = [0; 0; 0.1; 0;  0; -pi];
 tolerance = 0.02; % error tolerance [cm]
 
 % control

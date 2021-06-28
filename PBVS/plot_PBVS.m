@@ -19,7 +19,7 @@ y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
 ang = out.pose(:, 4:6); 
 
-for i = 39:length(out.pose)
+for i = 200:length(out.pose)
     
     %% subplot 1 (robot)
     cla(subplot(3,2,[1 3 5]));
@@ -40,7 +40,7 @@ for i = 39:length(out.pose)
     
     Robj = [cos(p_or(i,3)) -sin(p_or(i,3)) 0;
             sin(p_or(i,3)) cos(p_or(i,3))  0;
-                0           0          1];
+                 0              0          1];
     
     p1 = p_pos(i, 1:3)' + Robj * (p_1 - p_pos(i, 1:3)');
     p2 = p_pos(i, 1:3)' + Robj * (p_2 - p_pos(i, 1:3)');
@@ -58,19 +58,20 @@ for i = 39:length(out.pose)
         'JointPosition',{out.q(i,1),out.q(i,2),out.q(i,3),out.q(i,4),out.q(i,5),out.q(i,6),out.q(i,7),out.q(i,8),out.q(i,9)});
     show(robot,config);
     
-    Tec = [R_cam         camera_offset;          % transformation from camera to end effector
-           zeros(1,3)          1]; 
+    
+    Tec = [eye(3)        camera_offset ;          % transformation from camera to end effector
+           zeros(1,3)                1]; 
    
-    cam_pose = Tec * [out.pose(i,1:3)'; 1];
-    cam_orient = R_cam*rot(ang(i,3),ang(2),ang(i,1));
+    cam_pose =  out.pose(i,1:3)' + rot(pi,0,0) * camera_offset %[out.pose(i,1:3)'; 1];
+    cam_orient = rot(pi/2 + ang(i,3), ang(2), ang(i,1));
     
-   % quiver3([cam_pose(1);cam_pose(1);cam_pose(1)],[cam_pose(2);cam_pose(2);cam_pose(2)],[cam_pose(3);cam_pose(3);cam_pose(3)],cam_orient(1,:)'/4,cam_orient(2,:)'/4,cam_orient(3,:)'/4) % camera frame
+   quiver3([cam_pose(1);cam_pose(1);cam_pose(1)],[cam_pose(2);cam_pose(2);cam_pose(2)],[cam_pose(3);cam_pose(3);cam_pose(3)],cam_orient(1,:)'/15,cam_orient(2,:)'/15,cam_orient(3,:)'/15) % camera frame
     
 
 
 
-    ee_rot = rot(ang(i,3),ang(i,2),ang(i,1)) * R_cam ;
-    quiver3([out.pose(i,1);out.pose(i,1);out.pose(i,1)],[out.pose(i,2);out.pose(i,2);out.pose(i,2)],[out.pose(i,3);out.pose(i,3);out.pose(i,3)],ee_rot(1,:)'/4,ee_rot(2,:)'/4,ee_rot(3,:)'/4) % ee frame
+%     ee_rot = R_cam*rot(ang(i,3),ang(i,2),ang(i,1)) * R_cam ;
+%     quiver3([out.pose(i,1);out.pose(i,1);out.pose(i,1)],[out.pose(i,2);out.pose(i,2);out.pose(i,2)],[out.pose(i,3);out.pose(i,3);out.pose(i,3)],ee_rot(1,:)'/4,ee_rot(2,:)'/4,ee_rot(3,:)'/4) % ee frame
    
     
     

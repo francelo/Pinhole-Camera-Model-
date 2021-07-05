@@ -17,9 +17,9 @@ config = struct('JointName',{'panda_joint1','panda_joint2','panda_joint3','panda
             
 workspace_dim = 0.7;  % robot workspace [m]
 O = [0; 0; 0];        % world origin frame
-f = 0.08;              % focal lenght
-plane_x = 0.1;        % x image plane width
-plane_y = 0.08;       % y image plane height
+f = 0.025;            % focal lenght
+plane_x = 0.12;       % x image plane width
+plane_y = 0.1;        % y image plane height
 
 T = getTransform(robot,config,'panda_link1','panda_hand');
 position = T^-1 * [O; 1];
@@ -31,15 +31,23 @@ frequency = 100;       % sampling frequency [Hz]
 dT = 1/frequency;
 
 % % points' position (x,y,z) in world frame
-p = [0.4; 0.0; 0.2];     % points' position (x,y,z)
+p = [0.5; 0.0; 0.5];     % points' position (x,y,z)
 o = [0; 0; 0];        % points' orientation 
 l1 = 0.06;
 l2 = 0.04;
+
+% camera relative frame
+phi = 0;
+theta = pi;
+psi = pi/2;
+R_cam = rot(phi, theta, psi);
+camera_offset = rot(pi, 0, 0) * [-0.0; 0.0; -0.0];
+
 % reference 
-ref1 = [-0.06; -0.0];
-ref2 = [0.06;  -0.0];
-ref3 = [-0.06; 0.03];
-ref4 = [0.06;  0.03];
+ref1 = [-0.03; -0.0];
+ref2 = [0.03;  0.0];
+ref3 = [-0.03; 0.03];
+ref4 = [0.03;  0.03];
 ref = [ref1; ref2; ref3; ref4];
 tolerance = 0.002; % error tolerance [cm]
 

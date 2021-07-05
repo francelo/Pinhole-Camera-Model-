@@ -75,7 +75,7 @@ for i = 2:length(out.pose)
     cla(subplot(3,2,2));
     hold on
     grid on
-    axis([0 length(out.states)*st -0.8 0.8]);
+    axis([0 length(out.states)*st -0.2 0.2]);
     plot(time(1:i), out.error(1:i, :))
     title('Error')
     

@@ -1,6 +1,7 @@
 clear, clc, close all;
 
 %% parameters
+addpath(strcat(pwd,'/franka_softhand'));
 robot = importrobot('franka_hand.urdf');
 
 % initial 
@@ -25,7 +26,7 @@ frequency = 100;       % sampling frequency [Hz]
 dT = 1/frequency;      % sampling time [s]
 
 % points' pose in world frame
-p = [0.3; 0.3; 0.1];     % points' position (x,y,z)
+p = [0.45; 0.4; 0.1];     % points' position (x,y,z)
 o = [0; 0; pi/2];        % points' orientation 
 l1 = 0.06;
 l2 = 0.04;
@@ -38,11 +39,11 @@ R_cam = rot(phi, theta, psi);
 camera_offset = rot(pi, 0, 0) * [-0.06; 0.0; -0.04];
  
 % reference - camera desired pose relative to the object 
-ref = [0; 0; 0.06; -pi/2;  0; -pi];
+ref = [0; 0; 0.06; 0;  0; -pi];
 tolerance = 0.02; % error tolerance [cm]
 
 % control
-Kp = diag([1.3 1.3 1.3 1.3 1.3 1.3]);
+Kp = diag([1. 1. 1. 1. 1. 1.]);
 Kd = 0*eye(6);
 Kh = eye(7);     % 
 Kg = 3*eye(7);   % gripper gain matrix

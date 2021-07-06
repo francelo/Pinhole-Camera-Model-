@@ -19,7 +19,7 @@ y_pose = out.pose(:, 2);
 z_pose = out.pose(:, 3);
 ang = out.pose(:, 4:6); 
 
-for i = 70:length(out.pose)
+for i = 2:length(out.pose)
     
     %% subplot 1 (robot)
     cla(subplot(3,2,[1 3 5]));
@@ -65,12 +65,16 @@ for i = 70:length(out.pose)
     cam_pose =  out.pose(i,1:3)' + rot(pi,0,0) * camera_offset; %[out.pose(i,1:3)'; 1];
     cam_orient = rot(pi/2 + ang(i,3), ang(2), ang(i,1));
     
-   quiver3([cam_pose(1);cam_pose(1);cam_pose(1)],[cam_pose(2);cam_pose(2);cam_pose(2)],[cam_pose(3);cam_pose(3);cam_pose(3)],cam_orient(1,:)'/15,cam_orient(2,:)'/15,cam_orient(3,:)'/15) % camera frame
+%   quiver3([cam_pose(1);cam_pose(1);cam_pose(1)],[cam_pose(2);cam_pose(2);cam_pose(2)],[cam_pose(3);cam_pose(3);cam_pose(3)],cam_orient(1,:)'/15,cam_orient(2,:)'/15,cam_orient(3,:)'/15) % camera frame
     
 
 %     ee_rot = R_cam*rot(ang(i,3),ang(i,2),ang(i,1)) * R_cam ;
 %     quiver3([out.pose(i,1);out.pose(i,1);out.pose(i,1)],[out.pose(i,2);out.pose(i,2);out.pose(i,2)],[out.pose(i,3);out.pose(i,3);out.pose(i,3)],ee_rot(1,:)'/4,ee_rot(2,:)'/4,ee_rot(3,:)'/4) % ee frame
 
+    view(65,25)
+    xlim([-0.1 0.7])
+    ylim([-0.75 0.75])
+    zlim([0.0 1.0])
     
     if out.remaining_time(i) == 0
         title('Remaining time [s]:', '-')
